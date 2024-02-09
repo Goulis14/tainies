@@ -29,7 +29,7 @@ class Movie(models.Model):
     image = models.ImageField(upload_to='movie_images/')
     summary = models.TextField()
     director = models.ForeignKey(Director, on_delete=models.CASCADE)
-    genres = models.ManyToManyField(Genre)  # giati to evala many to many
+    genres = models.ForeignKey(Genre, null=True, on_delete=models.CASCADE)  # giati to evala many to many
 
     def __str__(self):
         return self.title
