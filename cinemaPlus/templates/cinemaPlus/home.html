@@ -1,10 +1,36 @@
+{% extends 'cinemaPlus/base.html' %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Cinema Plus</title>
-</head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/cinemaPlus.css' %}">
+    </head>
 <body>
+    {% block content %}
+    <div class="row row2">
+    <div class="col-sm-2 search-label">Search</div>
+    <div class="col-sm-8">
+        <form method="get" action=".">
+            <input type="text" name="text">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+    {% for movie in movies %}
+    <div class="movie">
+        <h1><a href="{% url 'movie_detail' pk=movie.pk %}">{{ movie.title }}</a></h1>
+        <p> {{ movie.summary }}</p>
+        <p><a href="{% url 'home' %}?cat={{ movie.genre.pk }}">{{ movie.genre }}</a></p>
+    </div>
+{% endfor %}
+{% endblock content %}
 
 </body>
 </html>

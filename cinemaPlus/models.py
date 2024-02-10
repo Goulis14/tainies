@@ -26,10 +26,10 @@ class Movie(models.Model):
     duration = models.IntegerField()  # Duration in minutes
     release_date = models.DateField()
     imdb_url = models.URLField()
-    image = models.ImageField(upload_to='movie_images/')
+    image = models.ImageField(null=True)
     summary = models.TextField()
     director = models.ForeignKey(Director, on_delete=models.CASCADE)
-    genres = models.ForeignKey(Genre, null=True, on_delete=models.CASCADE)  # giati to evala many to many
+    genre = models.ForeignKey(Genre, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -48,11 +48,15 @@ class Play(models.Model):
     actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
 
-# class Review(models.Model):
-#     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='reviews')
-#     author = models.CharField(max_length=100)
-#     rating = models.IntegerField(choices=[(i, str(i)) for i in range(1, 11)])
-#     comment = models.TextField()
-#
-#     def __str__(self):
-#         return f"Review for {self.movie}: {self.rating}"
+    def __str__(self):
+        return f"{self.actor} in {self.movie.title}"
+
+
+class Review(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='reviews')
+    author = models.CharField(max_length=100)
+    rating = models.IntegerField(choices=[(i, str(i)) for i in range(1, 11)])
+    comment = models.TextField()
+
+    def __str__(self):
+        return f"Review for {self.movie}: {self.rating}"

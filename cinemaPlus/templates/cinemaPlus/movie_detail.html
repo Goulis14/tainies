@@ -1,0 +1,15 @@
+{% extends 'cinemaPlus/base.html' %}
+{% block content %}
+    <h1><{{ movie.title }} </h1>
+    <div class="movie">
+        <p>
+            {% if movie.image %} <img src="{{ movie.image.url }}"  alt=""/> {% endif %}
+            {{ movie.summary|linebreaks }}
+        </p>
+        <p>
+            {% if movie.genre %}
+                 <a href="{% url 'home' %}?cat={{ movie.genre.pk }}">{{ movie.genre }}</a>
+            {% endif %}
+        </p>
+    </div>
+{% endblock %}
