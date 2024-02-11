@@ -12,4 +12,28 @@
             {% endif %}
         </p>
     </div>
+<h2>User Reviews:</h2>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                <strong>{{ review.author }}</strong> - Rating: {{ review.rating }}<br>
+                {{ review.comment }}
+            </li>
+        {% empty %}
+            <li>No reviews available yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Add Your Review:</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" name="rating" min="1" max="10">
+        <br>
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment"></textarea>
+        <br>
+        <button type="submit">Submit Review</button>
+    </form>
+    <h2>Average Rating: {{ average_rating }}</h2>
 {% endblock %}
