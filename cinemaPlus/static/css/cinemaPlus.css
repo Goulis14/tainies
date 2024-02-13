@@ -1,64 +1,64 @@
-.page-header {
-    background-color: #ff9400;
-    margin-top: 0;
-    padding: 20px 20px 20px 40px;
-}
-
-.page-header h1,
-.page-header h1 a,
-.page-header h1 a:visited,
-.page-header h1 a:active {
-    color: #ffffff;
-    font-size: 36pt;
-    text-decoration: none;
-}
-
-.content {
-    margin-left: 40px;
-}
-
-h1, h2, h3, h4 {
-    font-family: 'Verdana', sans-serif;
-}
-
-
-
-.movie {
-    margin-bottom: 70px;
-    overflow: auto; /* Clear floats */
-
-}
-
-.movie h1 a, .movie h1 a:visited {
-    color: #000000;
-}
-.movie img{
-    float:left;
-    padding: 6px ;
-}
-.movie p {
-    font-size: 25px; /* Adjust the font size as needed */
-    text-align: justify;
-
-}
-
-.row.row2 {
-    display: flex;
-    align-items: center; /* Vertical center alignment */
-    margin-right: 300px;
-    justify-content: flex-start;
-}
-
-.search-label {
-    display: flex;
-    align-items: center; /* Vertical center alignment */
-
-}
-
-/* Optional: Reduce margin between input field and button */
-.col-sm-8 form input[type="text"] {
-    margin-right: 0px; /* Adjust as needed */
-}
-/*body{*/
-/*    font-family: Roboto, sans-serif;*/
+/*.page-header {*/
+/*    background-color: #ff9400;*/
+/*    margin-top: 0;*/
+/*    padding: 20px 20px 20px 40px;*/
 /*}*/
+
+/*.page-header h1,*/
+/*.page-header h1 a,*/
+/*.page-header h1 a:visited,*/
+/*.page-header h1 a:active {*/
+/*    color: #ffffff;*/
+/*    font-size: 36pt;*/
+/*    text-decoration: none;*/
+/*}*/
+
+/*.content {*/
+/*    margin-left: 40px;*/
+/*}*/
+
+/*h1, h2, h3, h4 {*/
+/*    font-family: 'Verdana', sans-serif;*/
+/*}*/
+
+
+
+/*.movie {*/
+/*    margin-bottom: 70px;*/
+/*    overflow: auto; !* Clear floats *!*/
+
+/*}*/
+
+/*.movie h1 a, .movie h1 a:visited {*/
+/*    color: #000000;*/
+/*}*/
+/*.movie img{*/
+/*    float:left;*/
+/*    padding: 6px ;*/
+/*}*/
+/*.movie p {*/
+/*    font-size: 25px; !* Adjust the font size as needed *!*/
+/*    text-align: justify;*/
+
+/*}*/
+
+/*.row.row2 {*/
+/*    display: flex;*/
+/*    align-items: center; !* Vertical center alignment *!*/
+/*    margin-right: 300px;*/
+/*    justify-content: flex-start;*/
+/*}*/
+
+/*.search-label {*/
+/*    display: flex;*/
+/*    align-items: center; !* Vertical center alignment *!*/
+
+/*}*/
+
+/*!* Optional: Reduce margin between input field and button *!*/
+/*.col-sm-8 form input[type="text"] {*/
+/*    margin-right: 0px; !* Adjust as needed *!*/
+/*}*/
+/*!*body{*!*/
+/*!*    font-family: Roboto, sans-serif;*!*/
+/*!*}*!*/
