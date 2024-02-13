@@ -1,39 +1,42 @@
-{% extends 'cinemaPlus/base.html' %}
-{% block content %}
-    <h1><{{ movie.title }} </h1>
-    <div class="movie">
-        <p>
-            {% if movie.image %} <img src="{{ movie.image.url }}"  alt=""/> {% endif %}
-            {{ movie.summary|linebreaks }}
-        </p>
-        <p>
-            {% if movie.genre %}
-                 <a href="{% url 'home' %}?cat={{ movie.genre.pk }}">{{ movie.genre }}</a>
-            {% endif %}
-        </p>
-    </div>
-<h2>User Reviews:</h2>
-    <ul>
-        {% for review in reviews %}
-            <li>
-                <strong>{{ review.author }}</strong> - Rating: {{ review.rating }}<br>
-                {{ review.comment }}
-            </li>
-        {% empty %}
-            <li>No reviews available yet.</li>
-        {% endfor %}
-    </ul>
+{% extends 'cinemaPlus/bootBase.html' %}
 
-    <h2>Add Your Review:</h2>
-    <form method="post">
-        {% csrf_token %}
-        <label for="rating">Rating:</label>
-        <input type="number" id="rating" name="rating" min="1" max="10">
-        <br>
-        <label for="comment">Comment:</label>
-        <textarea id="comment" name="comment"></textarea>
-        <br>
-        <button type="submit">Submit Review</button>
-    </form>
-    <h2>Average Rating: {{ average_rating }}</h2>
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>{{ movie.title }}</h1>
+        {% if movie.image %}
+            <img src="{{ movie.image.url }}" alt="{{ movie.title }}">
+        {% endif %}
+        <p>{{ movie.summary|linebreaks }}</p>
+        {% if movie.genre %}
+            <p><a href="{% url 'home' %}?cat={{ movie.genre.pk }}">{{ movie.genre }}</a></p>
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        <h2>User Reviews:</h2>
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <strong>{{ review.author }}</strong> - Rating: {{ review.rating }}<br>
+                    {{ review.comment }}
+                </li>
+            {% empty %}
+                <li>No reviews available yet.</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Add Your Review:</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="rating">Rating:</label>
+            <input type="number" id="rating" name="rating" min="1" max="10">
+            <br>
+            <label for="comment">Comment:</label>
+            <textarea id="comment" name="comment"></textarea>
+            <br>
+            <button type="submit">Submit Review</button>
+        </form>
+        <h2>Average Rating: {{ average_rating }}</h2>
+    </div>
+</div>
 {% endblock %}

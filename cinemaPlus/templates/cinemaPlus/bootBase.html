@@ -11,13 +11,14 @@
     body {
         margin: 0;
         padding: 0;
-        min-height: 100vh; /* Set minimum height to fill the viewport */
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
     }
 
     .container-fluid {
-        flex: 1; /* Allow the container to grow to fill remaining space */
+        flex: 1;
+        padding: 0; /* Remove padding */
     }
 
     /* Remove the navbar's default margin-bottom and rounded borders */
@@ -26,14 +27,11 @@
       border-radius: 0;
     }
 
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-
     /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
       background-color: #f1f1f1;
-      height: 100%;
+      min-height: 100vh; /* Adjust height to 100% of viewport */
     }
 
     /* Set black background color, white text and some padding */
@@ -41,37 +39,26 @@
       background-color: #555;
       color: white;
       padding: 15px;
+      position: relative; /* Add position relative */
+      bottom: 0; /* Stick to the bottom */
+      width: 100%;
     }
 
     /* Adjust carousel height */
     #myCarousel {
-        max-height: calc(100vh - 100px); /* Set the maximum height to fill viewport until footer */
-        overflow: hidden; /* Hide any overflow beyond the viewport */
+        max-height: calc(100vh - 100px);
+        overflow: hidden;
     }
 
-    /* Ensure the images cover the entire carousel item */
+    /* Ensure the images cover the entire carousel item and center */
     .carousel-inner .item img {
-
-    max-width: 100%; /* Ensure the image width does not exceed the carousel item width */
-    max-height: calc(100vh - 200px); /* Set maximum height of the image within the carousel */
-    width: 380px; /* Let the width adjust automatically */
-    height: 562px; /* Let the height adjust automatically */
+      margin: 0 auto;
+      display: block;
     }
-
-
 
     /* Increase summary font size */
     .carousel-caption p {
         font-size: 16px;
-    }
-
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;}
     }
   </style>
 </head>
@@ -100,7 +87,7 @@
   </div>
 </nav>
 
-<div class="container-fluid text-center">
+<div class="container-fluid">
   <div class="row content">
     <div class="col-sm-2 sidenav">
       <p><a href="#">Link</a></p>
@@ -129,8 +116,43 @@
   </div>
 </div>
 
-<footer class="container-fluid text-center">
-  <p>CinemaPlus</p>
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <h4>About CinemaPlus</h4>
+                <p>Discover the world of cinema with CinemaPlus. Explore a vast collection of movies, reviews, and articles to fuel your passion for film.</p>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#">Reviews</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <h4>Contact Us</h4>
+                <p>Have questions or suggestions? Reach out to us!</p>
+                <ul class="list-unstyled">
+                    <li>Email: info@cinemaplus.com</li>
+                    <li>Phone: +123 456 7890</li>
+                    <li>Address: 123 Movie Street, City, Country</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>&copy; 2024 CinemaPlus. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>
 
 </body>
