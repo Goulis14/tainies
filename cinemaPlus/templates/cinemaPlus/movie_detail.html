@@ -9,10 +9,18 @@
             {% if movie.image %}
                 <img class="movie-poster" src="{{ movie.image.url }}" alt="{{ movie.title }}">
             {% endif %}
-            <p class="movie-summary">{{ movie.summary|linebreaks }}</p>
-            {% if movie.genre %}
-                <p class="movie-genre"><a href="{% url 'home' %}?cat={{ movie.genre.pk }}">{{ movie.genre }}</a></p>
-            {% endif %}
+            <div class="movie-info">
+                <p><strong>Summary:</strong></p>
+                <p class="movie-summary">{{ movie.summary|linebreaks }}</p>
+                <p><strong>Duration:</strong> {{ movie.duration }} minutes</p>
+                <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+                <p><strong>IMDb URL:</strong> <a href="{{ movie.imdb_url }}" target="_blank">{{ movie.imdb_url }}</a></p>
+                <p><strong>IMDb Rating:</strong> {{ movie.imdb_rating }}</p>
+                {% if movie.genre %}
+                    <p class="movie-genre"><strong>Genre:</strong> <a href="{% url 'home' %}?cat={{ movie.genre.pk }}">{{ movie.genre }}</a></p>
+                {% endif %}
+                <p><strong>Director:</strong> {{ movie.director }}</p>
+            </div>
         </div>
     </div>
     <div class="col-md-4">
