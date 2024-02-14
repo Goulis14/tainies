@@ -19,7 +19,7 @@
                 {% if movie.genre %}
                     <p class="movie-genre"><strong>Genre:</strong> <a href="{% url 'home' %}?cat={{ movie.genre.pk }}">{{ movie.genre }}</a></p>
                 {% endif %}
-                <p><strong>Director:</strong> {{ movie.director }}</p>
+
             </div>
         </div>
     </div>

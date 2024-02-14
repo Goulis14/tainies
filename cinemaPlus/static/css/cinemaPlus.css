@@ -1,17 +1,75 @@
 /* Add your custom CSS styles here */
-.movie-details {
-    margin-bottom: 20px;
+
+/* Use a modern font */
+body {
+    font-family: 'Arial', sans-serif; /* Example: Change 'Arial' to your preferred modern font */
 }
 
-.movie-poster {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
+/* Apply light green background to side navigation bars */
+.sidenav {
+    background-color: #f0f8ff; /* Light green color */
 }
 
-.movie-summary {
+/* Apply light dark background to carousel frame */
+#myCarousel {
+    background-color: #f3f3f3; /* Light dark color */
+}
+
+/* Additional styling for carousel caption */
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    padding: 20px;
+    color: #fff; /* White text */
+}
+
+/* Increase font size for carousel caption text */
+.carousel-caption h3,
+.carousel-caption p {
+    font-size: 18px;
+}
+
+/* Adjust spacing for search section */
+.row2 {
+    margin-top: 20px; /* Adjust as needed */
+    margin-bottom: 20px; /* Adjust as needed */
+}
+
+.search-label {
+    line-height: 34px; /* Center align vertically with input */
+}
+
+/* Adjust font size and color for search input */
+input[type="text"] {
     font-size: 16px;
+    color: #333; /* Dark text color */
 }
+
+/* Adjust font size and color for submit button */
+input[type="submit"] {
+    font-size: 16px;
+    background-color: #007bff; /* Blue color */
+    color: #fff; /* White text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add padding */
+    cursor: pointer; /* Add cursor pointer on hover */
+}
+
+/* Adjust margin for movie details in movie_detail.html */
+.movie-details {
+    margin-bottom: 20px; /* Adjust as needed */
+}
+
+
+
+/*.movie-poster {*/
+/*    max-width: 100%;*/
+/*    height: auto;*/
+/*    border-radius: 5px;*/
+/*}*/
+
+/*.movie-summary {*/
+/*    font-size: 16px;*/
+/*}*/
 
 .movie-genre {
     font-style: italic;
@@ -81,36 +139,15 @@
     margin-top: 20px;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
 
-.row.content {
-    height: 450px;
-}
 
-.container-fluid {
-    flex: 1;
-    padding: 0; /* Remove padding */
-}
+
 
 /* Remove the navbar's default margin-bottom and rounded borders */
-.navbar {
-    margin-bottom: 0;
-    border-radius: 0;
-}
+
 
 /* Set gray background color and 100% height */
-.sidenav {
-    height: 100%;
-    padding-top: 20px;
-    background-color: #f1f1f1;
-    min-height: 100vh; /* Adjust height to 100% of viewport */
-}
+
 
 /* Set black background color, white text and some padding */
 footer {
@@ -123,28 +160,15 @@ footer {
 }
 
 /* Adjust carousel height */
-#myCarousel {
-    max-height: calc(100vh - 100px);
-    overflow: hidden;
-}
 
-/* Ensure the images cover the entire carousel item and center */
-.carousel-inner .item img {
-    margin: 0 auto;
-    display: block;
-}
 
-/* Increase summary font size */
-.carousel-caption p {
-    font-size: 16px;
-}
 
-.navbar-brand img {
-    max-height: 100%;
-    max-width: 100%;
-    height: auto;
-    width: auto;
-}
+/*.navbar-brand img {*/
+/*    max-height: 100%;*/
+/*    max-width: 100%;*/
+/*    height: auto;*/
+/*    width: auto;*/
+/*}*/
 
 
 /*.page-header {*/
