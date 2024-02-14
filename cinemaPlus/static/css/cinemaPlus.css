@@ -1,3 +1,152 @@
+/* Add your custom CSS styles here */
+.movie-details {
+    margin-bottom: 20px;
+}
+
+.movie-poster {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.movie-summary {
+    font-size: 16px;
+}
+
+.movie-genre {
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.user-reviews {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.review-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.review-header {
+    margin-bottom: 10px;
+}
+
+.review-author {
+    font-weight: bold;
+}
+
+.review-rating {
+    color: #777;
+    font-size: 14px;
+}
+
+.review-comment {
+    font-size: 14px;
+}
+
+.review-form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.average-rating {
+    margin-top: 20px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.row.content {
+    height: 450px;
+}
+
+.container-fluid {
+    flex: 1;
+    padding: 0; /* Remove padding */
+}
+
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+    height: 100%;
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    min-height: 100vh; /* Adjust height to 100% of viewport */
+}
+
+/* Set black background color, white text and some padding */
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+    position: relative; /* Add position relative */
+    bottom: 0; /* Stick to the bottom */
+    width: 100%;
+}
+
+/* Adjust carousel height */
+#myCarousel {
+    max-height: calc(100vh - 100px);
+    overflow: hidden;
+}
+
+/* Ensure the images cover the entire carousel item and center */
+.carousel-inner .item img {
+    margin: 0 auto;
+    display: block;
+}
+
+/* Increase summary font size */
+.carousel-caption p {
+    font-size: 16px;
+}
+
+.navbar-brand img {
+    max-height: 100%;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+
 /*.page-header {*/
 /*    background-color: #ff9400;*/
 /*    margin-top: 0;*/
