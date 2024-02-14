@@ -1,7 +1,8 @@
+from django.db.models.functions import Lower
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from cinemaPlus.models import Movie, Review, Genre, Director, Actor, Play
-from django.db.models import Q, Avg, Count
+from django.db.models import Q, Avg, Count, F
 from django.contrib.auth import authenticate, login
 from .forms import ReviewForm
 from django.contrib.auth.forms import UserCreationForm
@@ -107,19 +108,22 @@ def home(request):
     except:
         actor_id = False
 
+    # Fetch movies sorted by title
+    movies = Movie.objects.annotate(
+        title_lower=Lower('title')  # Ensure case-insensitive sorting
+    ).order_by('title_lower')
+
     if cat_id is False and dir_id is False and actor_id is False:
-        if txt == '':
-            movies = Movie.objects.all()
-        else:
-            movies = Movie.objects.filter(Q(summary__icontains=txt) | Q(title__icontains=txt))
+        if txt != '':
+            movies = movies.filter(Q(summary__icontains=txt) | Q(title__icontains=txt))
     elif cat_id is not False and dir_id is False and actor_id is False:
-        movies = Movie.objects.filter(genre_id=cat_id)
+        movies = movies.filter(genre_id=cat_id)
     elif cat_id is False and dir_id is not False and actor_id is False:
-        movies = Movie.objects.filter(director_id=dir_id)
+        movies = movies.filter(director_id=dir_id)
     elif cat_id is False and dir_id is False and actor_id is not False:
-        movies = Movie.objects.filter(play__actor_id=actor_id)
+        movies = movies.filter(play__actor_id=actor_id)
     else:
-        movies = Movie.objects.filter(genre_id=cat_id, director_id=dir_id)
+        movies = movies.filter(genre_id=cat_id, director_id=dir_id)
 
     return render(request, 'cinemaPlus/home.html',
                   {'movies': movies, 'genres': genres, 'directors': directors, 'actors': actors})
