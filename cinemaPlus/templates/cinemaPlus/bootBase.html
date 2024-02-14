@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +9,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
-    body {
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
+    {#body {#}
+    {#    margin: 0;#}
+    {#    padding: 0;#}
+    {#    min-height: 100vh;#}
+    {#    display: flex;#}
+    {#    flex-direction: column;#}
+
+
+    .row.content {height: 450px}
 
     .container-fluid {
         flex: 1;
@@ -29,9 +32,11 @@
 
     /* Set gray background color and 100% height */
     .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      min-height: 100vh; /* Adjust height to 100% of viewport */
+        height: 100%;
+        padding-top: 20px;
+        background-color: #f1f1f1;
+        min-height: 100vh; /* Adjust height to 100% of viewport */
+
     }
 
     /* Set black background color, white text and some padding */
@@ -55,12 +60,26 @@
       margin: 0 auto;
       display: block;
     }
+    .carousel-caption {
+
+    color: white; /* Text color */
+    padding: 20px; /* Padding for better readability */
+}
 
     /* Increase summary font size */
     .carousel-caption p {
         font-size: 16px;
     }
-  </style>
+
+    .navbar-brand img {
+        max-height: 100%;
+        max-width: 100%;
+        height: auto;
+        width: auto;
+    }
+
+</style>
+
 </head>
 <body>
 
@@ -72,7 +91,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Logo</a>
+      <a class="navbar-brand" href="{% url 'home' %}">
+    <img src="{% static 'images/cinemaPlusLogo.jpeg' %}" alt="Logo">
+    </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -90,9 +111,12 @@
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
+     <h4>Categories</h4>
+  <ul class="nav nav-pills nav-stacked">
+    {% for category in genres %}
+      <li><a href="{% url 'home' %}?cat={{ category.id }}">{{ category.name }}</a></li>
+    {% endfor %}
+  </ul>
     </div>
     <div class="col-sm-8 text-left">
       <h1>CinemaPlus</h1>
@@ -106,15 +130,22 @@
         </div>
     </div>
     <div class="col-sm-2 sidenav">
-      <div class="well">
-        <p>ADS</p>
-      </div>
-      <div class="well">
-        <p>ADS</p>
+      <h4>Directors</h4>
+          <ul class="nav nav-pills nav-stacked">
+            {% for director in directors %}
+              <li><a href="{% url 'home' %}?dir={{ director.id }}">{{ director.first_name }} {{ director.last_name }}</a></li>
+            {% endfor %}
+          </ul>
+    <h4>Actors</h4>
+          <ul class="nav nav-pills nav-stacked">
+            {% for actor in actors %}
+              <li><a href="{% url 'home' %}?actor={{ actor.id }}">{{ actor.first_name }} {{ actor.last_name }}</a></li>
+            {% endfor %}
+          </ul>
       </div>
     </div>
   </div>
-</div>
+
 
 <footer class="footer">
     <div class="container">

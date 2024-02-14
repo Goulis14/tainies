@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
-from cinemaPlus.models import Movie, Review
-from django.db.models import Q, Avg
+from cinemaPlus.models import Movie, Review, Genre, Director, Actor, Play
+from django.db.models import Q, Avg, Count
 from django.contrib.auth import authenticate, login
 from .forms import ReviewForm
 from django.contrib.auth.forms import UserCreationForm
@@ -9,21 +9,21 @@ from django.contrib import messages
 
 
 # Create your views here.
-def home(request):
-    cat = request.GET.get('cat', "")
-    txt = request.GET.get('text', "")
-    try:
-        cat = int(cat)
-    except:
-        cat = False
-    if cat is False:
-        if txt == '':
-            movies = Movie.objects.all()
-        else:
-            movies = Movie.objects.filter(Q(summary__icontains=txt) | Q(title__icontains=txt))
-    else:
-        movies = Movie.objects.filter(genre_id=cat)
-    return render(request, 'cinemaPlus/home.html', {'movies': movies})
+# def home(request):
+#     cat = request.GET.get('cat', "")
+#     txt = request.GET.get('text', "")
+#     try:
+#         cat = int(cat)
+#     except:
+#         cat = False
+#     if cat is False:
+#         if txt == '':
+#             movies = Movie.objects.all()
+#         else:
+#             movies = Movie.objects.filter(Q(summary__icontains=txt) | Q(title__icontains=txt))
+#     else:
+#         movies = Movie.objects.filter(genre_id=cat)
+#     return render(request, 'cinemaPlus/home.html', {'movies': movies})
 
 
 def movie_detail(request, pk):
@@ -83,3 +83,43 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'cinemaPlus/register.html', {'form': form})
+
+
+def home(request):
+    genres = Genre.objects.all()
+    directors = Director.objects.all()
+    actors = Actor.objects.annotate(movie_count=Count('play__movie')).order_by('-movie_count')
+
+    cat_id = request.GET.get('cat', "")
+    dir_id = request.GET.get('dir', "")
+    actor_id = request.GET.get('actor', "")
+    txt = request.GET.get('text', "")
+    try:
+        cat_id = int(cat_id)
+    except:
+        cat_id = False
+    try:
+        dir_id = int(dir_id)
+    except:
+        dir_id = False
+    try:
+        actor_id = int(actor_id)
+    except:
+        actor_id = False
+
+    if cat_id is False and dir_id is False and actor_id is False:
+        if txt == '':
+            movies = Movie.objects.all()
+        else:
+            movies = Movie.objects.filter(Q(summary__icontains=txt) | Q(title__icontains=txt))
+    elif cat_id is not False and dir_id is False and actor_id is False:
+        movies = Movie.objects.filter(genre_id=cat_id)
+    elif cat_id is False and dir_id is not False and actor_id is False:
+        movies = Movie.objects.filter(director_id=dir_id)
+    elif cat_id is False and dir_id is False and actor_id is not False:
+        movies = Movie.objects.filter(play__actor_id=actor_id)
+    else:
+        movies = Movie.objects.filter(genre_id=cat_id, director_id=dir_id)
+
+    return render(request, 'cinemaPlus/home.html',
+                  {'movies': movies, 'genres': genres, 'directors': directors, 'actors': actors})
